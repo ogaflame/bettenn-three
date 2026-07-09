@@ -24,6 +24,51 @@
     --card:#FFFDF7;
     --shadow: 0 2px 10px rgba(35,42,46,0.08);
   }
+  body[data-theme="b"]{
+    --paper:#F3E9D8;
+    --paper-2:#EADFC6;
+    --ink:#2E2013;
+    --ink-soft:#6B5D48;
+    --navy:#3B2A20;
+    --navy-2:#5A4632;
+    --pine:#6B2737;
+    --pine-light:#F1E3E6;
+    --clay:#C9A227;
+    --mark:#EBCB6B;
+    --mark-strong:#C9A227;
+    --line:#D8C7A6;
+    --card:#FBF4E7;
+  }
+  body[data-theme="c"]{
+    --paper:#F0EDE3;
+    --paper-2:#E5E0D0;
+    --ink:#26282C;
+    --ink-soft:#5C5A4E;
+    --navy:#1B2E4A;
+    --navy-2:#223A5E;
+    --pine:#3A5A78;
+    --pine-light:#E3E8ED;
+    --clay:#B23A2E;
+    --mark:#EAC873;
+    --mark-strong:#E0B04A;
+    --line:#D4CDBB;
+    --card:#FAF8F1;
+  }
+  body[data-theme="d"]{
+    --paper:#EFEDE6;
+    --paper-2:#E3E0D5;
+    --ink:#2E2E2C;
+    --ink-soft:#5F5E5A;
+    --navy:#2E2E2C;
+    --navy-2:#44443F;
+    --pine:#2F5233;
+    --pine-light:#E3EAE4;
+    --clay:#B98A3D;
+    --mark:#EAD9A8;
+    --mark-strong:#D9B65B;
+    --line:#D6D3C7;
+    --card:#FAFAF6;
+  }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
@@ -31,6 +76,10 @@
     color:var(--ink);
     font-family:"Noto Sans JP", sans-serif;
     -webkit-font-smoothing:antialiased;
+    transition:background .2s ease, color .2s ease;
+  }
+  body, body *{
+    transition:background-color .2s ease, border-color .2s ease, color .2s ease;
   }
   h1,h2,h3,.serif{font-family:"Noto Serif JP", serif;}
 
@@ -83,6 +132,7 @@
     font-weight:700;
   }
   .tab-btn.all{margin-bottom:10px;}
+  .tab-btn.hyo1:not(.active){ background:var(--clay); margin-top:10px; }
 
   .main{
     flex:1;
@@ -166,6 +216,31 @@
     min-height:16px;
   }
   .searchmeta b{color:#fff;}
+
+  .theme-switcher{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:10px;
+  }
+  .theme-switcher .ts-label{
+    font-size:11px;
+    color:#C9D6D2;
+  }
+  .theme-dot{
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,0.25);
+    cursor:pointer;
+    padding:0;
+    position:relative;
+    flex-shrink:0;
+  }
+  .theme-dot.active{
+    border-color:#fff;
+    box-shadow:0 0 0 2px rgba(255,255,255,0.35);
+  }
 
   /* ---------- Content ---------- */
   .content{
@@ -373,6 +448,112 @@
     border-top:1px solid var(--line);
   }
 
+  /* ---------- 別表１ combination table ---------- */
+  .hyo1-intro{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:5px solid var(--clay);
+    border-radius:8px;
+    padding:16px 18px;
+    margin-bottom:16px;
+    box-shadow:var(--shadow);
+    font-size:13.5px;
+    line-height:1.8;
+  }
+  .hyo1-intro a{
+    color:var(--navy);
+    font-weight:700;
+    text-decoration:none;
+    border-bottom:1px dotted var(--navy);
+  }
+  .hyo1-legend{
+    background:var(--paper-2);
+    border-radius:8px;
+    padding:12px 16px;
+    margin-bottom:16px;
+    font-size:12.5px;
+    line-height:1.9;
+  }
+  .hyo1-legend .legend-title{
+    font-weight:700;
+    color:var(--navy);
+    margin-bottom:6px;
+    font-family:"Noto Serif JP",serif;
+  }
+  .hyo1-legend-item{ white-space:nowrap; display:inline-block; margin-right:14px; }
+  .hyo1-legend-item b{ color:var(--pine); }
+  .hyo1-scroll{
+    overflow-x:auto;
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    background:var(--card);
+    -webkit-overflow-scrolling:touch;
+  }
+  table.hyo1-table{
+    border-collapse:collapse;
+    font-size:12.5px;
+    min-width:760px;
+    width:100%;
+  }
+  table.hyo1-table th, table.hyo1-table td{
+    border:1px solid var(--line);
+    padding:7px 8px;
+    text-align:center;
+    white-space:nowrap;
+  }
+  table.hyo1-table thead th{
+    background:var(--navy);
+    color:#F6F1E6;
+    font-weight:700;
+    font-size:11.5px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    height:120px;
+    padding:8px 4px;
+    position:sticky;
+    top:0;
+    z-index:2;
+  }
+  table.hyo1-table thead th.row-head-col{
+    writing-mode:horizontal-tb;
+    text-align:left;
+    left:0;
+    z-index:3;
+  }
+  table.hyo1-table td.item-name{
+    text-align:left;
+    position:sticky;
+    left:0;
+    background:var(--card);
+    font-weight:700;
+    color:var(--ink);
+    z-index:1;
+    box-shadow: 2px 0 4px rgba(0,0,0,0.05);
+  }
+  table.hyo1-table td.freq{
+    color:var(--ink-soft);
+    font-size:11.5px;
+    white-space:normal;
+    min-width:80px;
+  }
+  table.hyo1-table tbody tr:nth-child(even) td:not(.item-name){ background:#FBF7EC; }
+  .mark-ok{ color:#2E7D4F; font-weight:700; font-size:14px; }
+  .mark-no{ color:#B5562F; font-weight:700; font-size:14px; }
+  .mark-note{ color:var(--pine); font-weight:700; font-size:11px; }
+  .hyo1-footnotes{
+    margin-top:14px;
+    font-size:12px;
+    color:var(--ink-soft);
+    line-height:1.9;
+  }
+  .hyo1-hint{
+    margin-top:10px;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    text-align:right;
+  }
+
   @media (max-width:720px){
     .tabs{ width:44px; }
     .tab-btn{ font-size:11px; min-height:90px; width:32px; padding:10px 5px;}
@@ -392,6 +573,7 @@
 </style>
 </head>
 <body>
+<script>try{document.body.dataset.theme = localStorage.getItem('chozai_theme') || 'a';}catch(e){}</script>
 <div class="app">
   <nav class="tabs" id="tabs"></nav>
   <div class="main">
@@ -409,6 +591,13 @@
         <button class="clearbtn" id="clearbtn">✕</button>
       </div>
       <div class="searchmeta" id="searchmeta"></div>
+      <div class="theme-switcher" id="themeSwitcher">
+        <span class="ts-label">配色</span>
+        <button class="theme-dot" data-theme="a" title="和紙としおり" style="background:linear-gradient(135deg,#1F3A45 50%,#F0B93B 50%);"></button>
+        <button class="theme-dot" data-theme="b" title="古書・革装丁" style="background:linear-gradient(135deg,#3B2A20 50%,#C9A227 50%);"></button>
+        <button class="theme-dot" data-theme="c" title="藍染め・和装本" style="background:linear-gradient(135deg,#1B2E4A 50%,#E0B04A 50%);"></button>
+        <button class="theme-dot" data-theme="d" title="図書目録・モノトーン" style="background:linear-gradient(135deg,#2E2E2C 50%,#D9B65B 50%);"></button>
+      </div>
     </header>
     <main class="content" id="content"></main>
     <footer class="note">
@@ -422,6 +611,51 @@
 const SECTIONS = JSON.parse(document.getElementById('sectiondata').textContent);
 
 const CHAPTERS = ["通則","調剤技術料","薬学管理料","薬剤料","特定保険医療材料料","その他"];
+const HYO1_SOURCE_URL = "https://www.mhlw.go.jp/content/12400000/001713883.pdf#page=67";
+
+const HYO1_COLUMNS = [
+  {short:"服１イ※1\n・２イ", full:"服薬管理指導料「１のイ」※１・「２のイ」"},
+  {short:"服１ロ\n・２ロ", full:"服薬管理指導料「１のロ」・「２のロ」"},
+  {short:"服３", full:"服薬管理指導料３"},
+  {short:"服４イ\n・４ニ", full:"服薬管理指導料「４のイ」・「４のニ」"},
+  {short:"服４ロ\n・４ハ", full:"服薬管理指導料「４のロ」・「４のハ」"},
+  {short:"訪問１", full:"在宅患者訪問薬剤管理指導料１"},
+  {short:"訪問２\n・３", full:"在宅患者訪問薬剤管理指導料２・３"},
+  {short:"緊急訪問", full:"在宅患者緊急訪問薬剤管理指導料"},
+  {short:"緊急共同\n指導", full:"在宅患者緊急時等共同指導料"},
+  {short:"医師同時\n指導", full:"訪問薬剤管理医師同時指導料"}
+];
+
+// marks: "o" = ○ 算定可, "x" = × 算定不可
+const HYO1_ROWS = [
+  {name:"調剤時残薬調整加算", freq:"処方箋受付ごと", marks:["o","o","o","o","o","o","o","o","o","o"]},
+  {name:"薬学的有害事象等防止加算", freq:"処方箋受付ごと", marks:["o","o","o","o","o","o","o","o","o","o"]},
+  {name:"特定薬剤管理指導加算１", freq:"処方箋受付ごと", marks:["o","o","o","o","x","x","x","x","x","x"]},
+  {name:"特定薬剤管理指導加算２", freq:"月１回まで", marks:["o","o","o","o","x","x","x","x","x","x"]},
+  {name:"特定薬剤管理指導加算３", freq:"１回まで", marks:["o","o","o","o","x","x","x","x","x","x"]},
+  {name:"乳幼児服薬指導加算", freq:"処方箋受付ごと", marks:["o","o","o","o","o","x","x","x","x","x"]},
+  {name:"吸入薬指導加算", freq:"６月に１回まで", marks:["o","o","o","o","x","x","x","x","x","x"]},
+  {name:"かかりつけ薬剤師フォローアップ加算", freq:"３月に１回まで", note:"※１", marks:["o","x3","x","x","x","x","x","x","x","x"]},
+  {name:"かかりつけ薬剤師訪問加算", freq:"６月に１回まで", note:"※１", marks:["o","x3","x","x","x","x","x","x","x","x"]},
+  {name:"麻薬管理指導加算", freq:"１回ごと", marks:["o","o","o","o","o","o","o","o","o","o"]},
+  {name:"乳幼児加算", freq:"１回ごと", marks:["x","x","x","x","x","o","o","o","o","o"]},
+  {name:"小児特定加算", freq:"１回ごと", marks:["o","o","o","o","o","o","o","o","o","o"]},
+  {name:"在宅患者医療用麻薬持続注射療法加算", freq:"１回ごと", marks:["x","x","x","x","x","o","o","o","o","o"]},
+  {name:"在宅中心静脈栄養法加算", freq:"１回ごと", marks:["x","x","x","x","x","o","o","o","o","o"]},
+  {name:"外来服薬支援料１", freq:"月１回まで", marks:["o","o","o","o","x","x","x","x","x","x"]},
+  {name:"外来服薬支援料２", freq:"処方箋受付ごと", marks:["o","o","o","o","o","o","o","o","o","o"]},
+  {name:"服用薬剤調整支援料１", freq:"月１回まで", marks:["o","o","o","o","o","o","o","o","o","o"]},
+  {name:"服用薬剤調整支援料２", freq:"６月に１回まで", note:"※１", marks:["o","x3","x","o","o","o","o","o","o","o"]},
+  {name:"調剤後薬剤管理指導料１", freq:"月１回まで", marks:["o","o","o","o","o","o","o","o","o","o"]},
+  {name:"調剤後薬剤管理指導料２", freq:"月１回まで", marks:["o","o","o","o","o","o","o","o","o","o"]},
+  {name:"服薬情報等提供料１", freq:"月１回まで", marks:["o","o","o","o","o","x","x","x","x","x"]},
+  {name:"服薬情報等提供料２", freq:"月１回まで", marks:["o","o","o","o","o","x","x","x","x","x"]},
+  {name:"服薬情報等提供料３", freq:"３月に１回まで", marks:["o","o","o","o","o","x","x","x","x","x"]},
+  {name:"経管投薬支援料", freq:"１回まで", marks:["o","o","o","o","o","o","o","o","o","o"]},
+  {name:"在宅移行初期管理料", freq:"１回まで", marks:["x","x","x","x","x","o","x","x","x","x"]},
+  {name:"複数名薬剤管理指導訪問料", freq:"1回ごと", note:"※２", marks:["x","x","x","x","x","o","x","o","x","x"]}
+];
+
 const CHAPTER_SHORT = {
   "通則":"通則",
   "調剤技術料":"調剤技術料",
@@ -447,6 +681,7 @@ function buildTabs(){
   for(const ch of CHAPTERS){
     html += `<button class="tab-btn" data-ch="${ch}">${CHAPTER_SHORT[ch]}</button>`;
   }
+  html += `<button class="tab-btn hyo1" data-ch="HYO1">別表１</button>`;
   tabsEl.innerHTML = html;
   tabsEl.querySelectorAll('.tab-btn').forEach(btn=>{
     btn.addEventListener('click', ()=>{
@@ -540,6 +775,10 @@ function searchSections(query){
 
 // ---------- Rendering ----------
 function render(){
+  if(currentChapter === 'HYO1'){
+    renderHyo1();
+    return;
+  }
   if(currentDetailId){
     renderDetail(currentDetailId);
     return;
@@ -658,6 +897,58 @@ function renderDetail(id){
   });
 }
 
+function renderHyo1(){
+  searchmeta.textContent = '';
+  let legendHtml = '<div class="hyo1-legend"><div class="legend-title">列の略称</div>';
+  HYO1_COLUMNS.forEach((c,i)=>{
+    legendHtml += `<span class="hyo1-legend-item"><b>${escapeHtml(c.short.replace(/\n/g,''))}</b> = ${escapeHtml(c.full)}</span>`;
+  });
+  legendHtml += '</div>';
+
+  let theadHtml = '<thead><tr><th class="row-head-col">加算・管理料</th><th>算定回数</th>';
+  HYO1_COLUMNS.forEach(c=>{
+    theadHtml += `<th>${escapeHtml(c.short)}</th>`;
+  });
+  theadHtml += '</tr></thead>';
+
+  let tbodyHtml = '<tbody>';
+  HYO1_ROWS.forEach(r=>{
+    tbodyHtml += `<tr><td class="item-name">${escapeHtml(r.name)}${r.note? ' <span class="mark-note">'+r.note+'</span>' : ''}</td><td class="freq">${escapeHtml(r.freq)}</td>`;
+    r.marks.forEach(m=>{
+      if(m === 'o'){
+        tbodyHtml += '<td><span class="mark-ok">○</span></td>';
+      } else if(m === 'x3'){
+        tbodyHtml += '<td><span class="mark-no">×</span><br><span class="mark-note">※３</span></td>';
+      } else {
+        tbodyHtml += '<td><span class="mark-no">×</span></td>';
+      }
+    });
+    tbodyHtml += '</tr>';
+  });
+  tbodyHtml += '</tbody>';
+
+  contentEl.innerHTML = `
+    <div class="hyo1-intro">
+      <strong>別表１　服薬管理指導料等を算定する場合における他の薬学管理料の算定の可否</strong><br>
+      服薬管理指導料や在宅患者訪問薬剤管理指導料等を算定する際に、他のどの加算・管理料を併せて算定できるか（○）・できないか（×）をまとめた一覧です。
+      <br><a href="${HYO1_SOURCE_URL}" target="_blank" rel="noopener">原文PDF（67〜68ページ）を開く ↗</a>
+    </div>
+    ${legendHtml}
+    <div class="hyo1-scroll">
+      <table class="hyo1-table">
+        ${theadHtml}
+        ${tbodyHtml}
+      </table>
+    </div>
+    <div class="hyo1-footnotes">
+      ※１　かかりつけ薬剤師のみ算定可能<br>
+      ※２　単一建物診療患者１名のみ算定可能<br>
+      ※３　かかりつけ薬剤師が指導や訪問等を実施し、その後の服薬管理指導を当該保険薬局の他の保険薬剤師が実施した場合については、併算定可能
+    </div>
+    <div class="hyo1-hint">横にスクロールすると全ての列が見られます →</div>
+  `;
+}
+
 // ---------- Events ----------
 let debounceTimer;
 searchbox.addEventListener('input', ()=>{
@@ -677,6 +968,24 @@ clearbtn.addEventListener('click', ()=>{
   render();
   searchbox.focus();
 });
+
+// ---------- Theme switcher ----------
+function applyTheme(t){
+  document.body.dataset.theme = t;
+  try{ localStorage.setItem('chozai_theme', t); }catch(e){}
+  document.querySelectorAll('.theme-dot').forEach(d=>{
+    d.classList.toggle('active', d.dataset.theme === t);
+  });
+}
+function initTheme(){
+  let saved = 'a';
+  try{ saved = localStorage.getItem('chozai_theme') || 'a'; }catch(e){}
+  applyTheme(saved);
+  document.querySelectorAll('.theme-dot').forEach(d=>{
+    d.addEventListener('click', ()=> applyTheme(d.dataset.theme));
+  });
+}
+initTheme();
 
 buildTabs();
 render();
